@@ -1,19 +1,54 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import { toast } from "react-hot-toast";
 
+// Реєстрація
 export const registerUser = async (email, password) => {
+  try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    toast.success("You have been successfully registered");
     return userCredential.user;
-  };
-  
-  export const loginUser = async (email, password) => {
+  } catch (error) {
+    if (error.code === "auth/email-already-in-use") {
+      toast.error("This email is already in use. Try another one");
+    } else if (error.code === "auth/invalid-email") {
+      toast.error("Invalid email format");
+    } else {
+      toast.error(`Registration error. Please try again`);
+    }
+  }
+};
+
+// Логін
+export const loginUser = async (email, password) => {
+  try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    toast.success("Logged in successfully!");
     return userCredential.user;
-  };
-  
-  export const logoutUser = async () => {
+  } catch (error) {
+    if (error.code === "auth/user-not-found") {
+      toast.error("User with such email was not found. Please try again");
+    } else if (error.code === "auth/wrong-password") {
+      toast.error("Invalid password. Please try again");
+    } else if (error.code === "auth/invalid-email") {
+      toast.error("Invalid email format. Please try again");
+    } else {
+      toast.error(`Login error. Please try again`);
+    }
+  }
+};
+
+// Вихід
+export const logoutUser = async () => {
+  try {
     await signOut(auth);
-  };
+  } catch (error) {
+    toast.error(`Logout error. Please try again`);
+    throw error;
+  }
+};
+
+
 
 // ✅ Отримання поточного користувача
 export const getCurrentUser = () => {

@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../services/firebase";
 import { registerSchema } from "../../../schemas/registerSchema";
 import styles from "./RegisterForm.module.css";
+import { registerUser } from "../../../services/authService";
 
 const RegisterForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -12,11 +11,9 @@ const RegisterForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
-      // Тут можна буде зробити toast/повідомлення про успіх, поки просто нічого
-    } catch (error) {
-        console.log(error)
-      // Тут пізніше теж зробимо гарне повідомлення через toast
+      await registerUser(data.email, data.password);
+    } catch {
+      // Помилки обробляються у authService через toast
     }
   };
 

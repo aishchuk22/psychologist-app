@@ -35,7 +35,6 @@ const AuthModal = ({ isOpen, onClose }) => {
       <div className={s.modal}>
         <button className={s.closeBtn} onClick={onClose}>❌</button>
 
-        {/* Перемикач між логіном і реєстрацією */}
         <div className={s.toggleButtons}>
           <button
             onClick={() => setAuthMode("login")}
@@ -51,7 +50,6 @@ const AuthModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Відображення потрібної форми */}
         {authMode === "login" && <LoginForm />}
         {authMode === "register" && <RegisterForm />}
       </div>

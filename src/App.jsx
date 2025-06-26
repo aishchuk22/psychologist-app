@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AuthModal from "./components/AuthModal/AuthModal";
+
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,6 +12,7 @@ function App() {
       <button onClick={() => setIsModalOpen(true)}>Open Auth Modal</button>
 
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }
