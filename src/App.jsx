@@ -1,13 +1,17 @@
-import RegisterForm from "./components/Auth/RegisterForm/RegisterForm";
+import React, { useState } from "react";
+import AuthModal from "./components/AuthModal/AuthModal";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div>
-      <h1>Registration Test</h1>
-      <RegisterForm />
+      <h1>App with Firebase Auth</h1>
+      <button onClick={() => setIsModalOpen(true)}>Open Auth Modal</button>
+
+      <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
 
 export default App;
-
