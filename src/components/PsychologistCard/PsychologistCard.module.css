@@ -40,3 +40,36 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+.expandedContent {
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.review {
+  margin-bottom: 8px;
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+}
+
+.appointmentBtn,
+.showLessBtn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.appointmentBtn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.showLessBtn {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  text-decoration: underline;
+}
