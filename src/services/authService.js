@@ -42,6 +42,7 @@ export const loginUser = async (email, password) => {
 export const logoutUser = async () => {
   try {
     await signOut(auth);
+    toast.success('Bye-bye')
   } catch (error) {
     toast.error(`Logout error. Please try again`);
     throw error;
