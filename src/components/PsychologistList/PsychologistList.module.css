@@ -1,26 +1,7 @@
 .list {
   list-style: none;
   padding: 0;
-}
-
-.item {
-  border: 1px solid #ccc;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-}
-
-.avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.loaderContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  margin: 0;
 }
 
 .loadMoreBtn {
@@ -34,6 +15,28 @@
   cursor: pointer;
 }
 
-.loadMoreBtn:hover {
-  background-color: #3468c0;
+.loader {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 10px 15px;
+  background-color: #3f82f8;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
