@@ -16,3 +16,24 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.loadMoreBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #3f82f8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loadMoreBtn:hover {
+  background-color: #3468c0;
+}
