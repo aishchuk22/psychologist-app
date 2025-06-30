@@ -7,6 +7,7 @@ const PsychologistsList = ({
   onLoadMore,
   showScrollTop,
   onScrollToTop,
+  onHeartClick,
 }) => {
   if (!Array.isArray(psychologists)) {
     return null;
@@ -17,7 +18,10 @@ const PsychologistsList = ({
       <ul className={styles.list}>
         {psychologists.slice(0, visibleCount).map((psychologist) => (
           <li key={psychologist.id}>
-            <PsychologistCard psychologist={psychologist} />
+            <PsychologistCard
+              psychologist={psychologist}
+              onHeartClick={onHeartClick}
+            />
           </li>
         ))}
       </ul>

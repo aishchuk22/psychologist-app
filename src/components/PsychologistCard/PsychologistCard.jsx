@@ -3,7 +3,7 @@ import styles from "./PsychologistCard.module.css";
 import { Star, Heart } from "lucide-react";
 import { useFavorites } from "../../hooks/useFavorites";
 
-const PsychologistCard = ({ psychologist }) => {
+const PsychologistCard = ({ psychologist, onHeartClick }) => {
   const {
     name,
     avatar_url,
@@ -25,11 +25,18 @@ const PsychologistCard = ({ psychologist }) => {
 
   const handleMakeAppointment = () => {
     console.log(`Make appointment with ${name}`);
-    // Тут в майбутньому буде відкриття модалки для бронювання
   };
 
-  const { _favorites, toggleFavorite, isFavorite } = useFavorites();
+  const { toggleFavorite, isFavorite } = useFavorites();
   const favorite = isFavorite(psychologist.id);
+
+  const handleHeartClick = () => {
+    if (onHeartClick) {
+      onHeartClick(psychologist);
+    } else {
+      toggleFavorite(psychologist.id);
+    }
+  };
 
   return (
     <div className={styles.card}>
@@ -38,14 +45,11 @@ const PsychologistCard = ({ psychologist }) => {
       <div className={styles.header}>
         <div className={styles.nameRow}>
           <h3>{name}</h3>
-          <button
-            className={styles.favoriteButton}
-            onClick={() => toggleFavorite(psychologist.id)}
-          >
+          <button className={styles.favoriteButton} onClick={handleHeartClick}>
             {favorite ? (
-              <Heart fill="red" color="red" size={20} />
+              <Heart fill="red" color="none" size={20} />
             ) : (
-              <Heart size={20} color="black" fill="none" />
+              <Heart size={20} color="blue" fill="none" />
             )}
           </button>
         </div>
