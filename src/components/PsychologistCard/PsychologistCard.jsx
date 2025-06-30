@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import styles from './PsychologistCard.module.css';
-import { Star } from 'lucide-react';
+import { useState } from "react";
+import styles from "./PsychologistCard.module.css";
+import { Star, Heart } from "lucide-react";
+import { useFavorites } from "../../hooks/useFavorites";
 
 const PsychologistCard = ({ psychologist }) => {
   const {
@@ -27,12 +28,28 @@ const PsychologistCard = ({ psychologist }) => {
     // Тут в майбутньому буде відкриття модалки для бронювання
   };
 
+  const { _favorites, toggleFavorite, isFavorite } = useFavorites();
+  const favorite = isFavorite(psychologist.id);
+
   return (
     <div className={styles.card}>
       <img src={avatar_url} alt={name} className={styles.avatar} />
 
       <div className={styles.header}>
-        <h3>{name}</h3>
+        <div className={styles.nameRow}>
+          <h3>{name}</h3>
+          <button
+            className={styles.favoriteButton}
+            onClick={() => toggleFavorite(psychologist.id)}
+          >
+            {favorite ? (
+              <Heart fill="red" color="red" size={20} />
+            ) : (
+              <Heart size={20} color="black" fill="none" />
+            )}
+          </button>
+        </div>
+
         <div className={styles.rating}>
           <Star size={16} fill="#FFC107" stroke="none" />
           <span>{rating}</span>
@@ -44,7 +61,9 @@ const PsychologistCard = ({ psychologist }) => {
         <span className={styles.tag}>Experience: {experience}</span>
         <span className={styles.tag}>License: {license}</span>
         <span className={styles.tag}>Specialization: {specialization}</span>
-        <span className={styles.tag}>Initial consultation: {initial_consultation}</span>
+        <span className={styles.tag}>
+          Initial consultation: {initial_consultation}
+        </span>
       </div>
 
       <p className={styles.about}>{about}</p>
@@ -60,12 +79,17 @@ const PsychologistCard = ({ psychologist }) => {
           <h4>Reviews:</h4>
           {reviews.map((review, index) => (
             <div key={index} className={styles.review}>
-              <p><strong>{review.reviewer}</strong> ({review.rating}⭐)</p>
+              <p>
+                <strong>{review.reviewer}</strong> ({review.rating}⭐)
+              </p>
               <p>{review.comment}</p>
             </div>
           ))}
 
-          <button className={styles.appointmentBtn} onClick={handleMakeAppointment}>
+          <button
+            className={styles.appointmentBtn}
+            onClick={handleMakeAppointment}
+          >
             Make Appointment
           </button>
 
@@ -79,50 +103,3 @@ const PsychologistCard = ({ psychologist }) => {
 };
 
 export default PsychologistCard;
-
-
-
-// import styles from './PsychologistCard.module.css';
-// import { Star } from 'lucide-react';
-
-// const PsychologistCard = ({ psychologist }) => {
-//   const {
-//     name,
-//     avatar_url,
-//     experience,
-//     rating,
-//     price_per_hour,
-//     license,
-//     specialization,
-//     initial_consultation,
-//     about,
-//   } = psychologist;
-
-//   return (
-//     <div className={styles.card}>
-//       <img src={avatar_url} alt={name} className={styles.avatar} />
-
-//       <div className={styles.header}>
-//         <h3>{name}</h3>
-//         <div className={styles.rating}>
-//           <Star size={16} fill="#FFC107" stroke="none" />
-//           <span>{rating}</span>
-//         </div>
-//         <p>Price / 1 hour: {price_per_hour}$</p>
-//       </div>
-
-//       <div className={styles.tags}>
-//         <span className={styles.tag}>Experience: {experience}</span>
-//         <span className={styles.tag}>License: {license}</span>
-//         <span className={styles.tag}>Specialization: {specialization}</span>
-//         <span className={styles.tag}>Initial consultation: {initial_consultation}</span>
-//       </div>
-
-//       <p className={styles.about}>{about}</p>
-
-//       <button className={styles.readMoreBtn}>Read more</button>
-//     </div>
-//   );
-// };
-
-// export default PsychologistCard;

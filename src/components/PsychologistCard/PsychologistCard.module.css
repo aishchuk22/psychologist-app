@@ -73,3 +73,21 @@
   border: none;
   text-decoration: underline;
 }
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favoriteButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.favoriteButton:hover {
+  background: none;
+  transform: scale(1.05);
+}
