@@ -3,12 +3,12 @@ import { FavoritesContext } from "./FavoritesContext";
 
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState(() => {
-    const storedFavorites = localStorage.getItem("favorites");
+    const storedFavorites = localStorage.getItem("psychologist-favorites");
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    localStorage.setItem("psychologist-favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   const toggleFavorite = (id) => {
@@ -20,7 +20,9 @@ export const FavoritesProvider = ({ children }) => {
   const isFavorite = (id) => favorites.includes(id);
 
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite }}>
+    <FavoritesContext.Provider
+      value={{ favorites, toggleFavorite, isFavorite }}
+    >
       {children}
     </FavoritesContext.Provider>
   );
