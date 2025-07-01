@@ -3,10 +3,11 @@ import Header from "./components/Header/Header";
 import PsychologistsPage from "./pages/PsychologistsPage";
 import FavoritesPage from "./pages/FavoritesPage";
 
-const AppRouter = () => {
+const AppRouter = ({ setIsModalOpen }) => {
   return (
     <Router>
-      <Header />
+      <Header setIsModalOpen={setIsModalOpen} />
+
       <Routes>
         <Route path="/" element={<div>Home Page</div>} />
         <Route path="/psychologists" element={<PsychologistsPage />} />

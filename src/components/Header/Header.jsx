@@ -1,14 +1,21 @@
 import styles from "./Header.module.css";
-import { logoutUser } from "../../services/authService";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { logoutUser } from "../../services/authService";
 
-const Header = () => {
+const Header = ({ setIsModalOpen }) => {
+  const { user } = useAuth();
+
   const handleLogout = async () => {
     try {
       await logoutUser();
-    } catch {
-      // Помилка вже оброблена в authService через toast
+    } catch (error) {
+      console.error("Logout error:", error);
     }
+  };
+
+  const openAuthModal = () => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -35,18 +42,33 @@ const Header = () => {
             Psychologists
           </NavLink>
 
-          <NavLink
-            to="/favourites"
-            className={({ isActive }) =>
-              isActive ? styles.activeLink : styles.link
-            }
-          >
-            Favourites
-          </NavLink>
+          {user && (
+            <NavLink
+              to="/favourites"
+              className={({ isActive }) =>
+                isActive ? styles.activeLink : styles.link
+              }
+            >
+              Favourites
+            </NavLink>
+          )}
+        </div>
 
-          <button onClick={handleLogout} className={styles.logoutButton}>
-            Logout
-          </button>
+        <div className={styles.authButtons}>
+          {user ? (
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Logout
+            </button>
+          ) : (
+            <>
+              <button onClick={openAuthModal} className={styles.authButton}>
+                Login
+              </button>
+              <button onClick={openAuthModal} className={styles.authButton}>
+                Register
+              </button>
+            </>
+          )}
         </div>
       </nav>
     </header>

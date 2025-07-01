@@ -7,6 +7,7 @@ import { X } from "lucide-react";
 import styles from "./AppointmentModal.module.css";
 import { appointmentSchema } from "../../schemas/apptSchema";
 import { toast } from "react-hot-toast";
+import { saveAppointment } from "../../services/appointmentService";
 
 const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
   const {
@@ -47,7 +48,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
     e.target.scrollTop = e.target.scrollHeight;
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (!selectedDate) {
       toast.error("Please select a date");
       return;
@@ -64,15 +65,21 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
         hour: "2-digit",
         minute: "2-digit",
       }),
-      psychologist: psychologist.name,
+      psychologistId: psychologist.id,
+      psychologistName: psychologist.name,
     };
 
-    console.log("Appointment Data:", appointmentData);
-    toast.success("Appointment submitted!");
-    reset();
-    setSelectedDate(null);
-    setSelectedTime(null);
-    onClose();
+    try {
+      await saveAppointment(appointmentData);
+      toast.success("Appointment successfully saved!");
+      reset();
+      setSelectedDate(null);
+      setSelectedTime(null);
+      onClose();
+      // eslint-disable-next-line no-unused-vars
+    } catch (error) {
+      toast.error("Failed to save appointment. Please try again.");
+    }
   };
 
   if (!isOpen) return null;
