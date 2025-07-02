@@ -1,21 +1,18 @@
 import styles from "./Header.module.css";
+import { logoutUser } from "../../services/authService";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { logoutUser } from "../../services/authService";
+import { UserRound } from "lucide-react";
 
-const Header = ({ setIsModalOpen }) => {
+const Header = ({ openLoginModal, openRegisterModal }) => {
   const { user } = useAuth();
 
   const handleLogout = async () => {
     try {
       await logoutUser();
-    } catch (error) {
-      console.error("Logout error:", error);
+    } catch {
+      // Помилка вже оброблена в authService
     }
-  };
-
-  const openAuthModal = () => {
-    setIsModalOpen(true);
   };
 
   return (
@@ -52,20 +49,24 @@ const Header = ({ setIsModalOpen }) => {
               Favourites
             </NavLink>
           )}
-        </div>
 
-        <div className={styles.authButtons}>
-          {user ? (
-            <button onClick={handleLogout} className={styles.logoutButton}>
-              Logout
-            </button>
-          ) : (
+          {!user ? (
             <>
-              <button onClick={openAuthModal} className={styles.authButton}>
+              <button onClick={openLoginModal} className={styles.authButton}>
                 Login
               </button>
-              <button onClick={openAuthModal} className={styles.authButton}>
+              <button onClick={openRegisterModal} className={styles.authButton}>
                 Register
+              </button>
+            </>
+          ) : (
+            <>
+              <div className={styles.userInfo}>
+                <UserRound size={20} className={styles.userIcon} />
+                <span>{user.displayName || user.email}</span>
+              </div>
+              <button onClick={handleLogout} className={styles.logoutButton}>
+                Logout
               </button>
             </>
           )}

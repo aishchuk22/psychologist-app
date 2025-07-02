@@ -1,13 +1,22 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "./firebase";
 import { toast } from "react-hot-toast";
 
-// Реєстрація
-export const registerUser = async (email, password) => {
+export const registerUser = async (name, email, password) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    toast.success("You have been successfully registered");
-    return userCredential.user;
+    await updateProfile(userCredential.user, {
+      displayName: name,
+    });
+    toast.success("Registration successful! Please login now.");
+    await signOut(auth); // ВАЖЛИВО: вихід одразу після реєстрації
+    return true; // сигнал, що реєстрація вдала
   } catch (error) {
     if (error.code === "auth/email-already-in-use") {
       toast.error("This email is already in use. Try another one");
@@ -16,14 +25,14 @@ export const registerUser = async (email, password) => {
     } else {
       toast.error(`Registration error. Please try again`);
     }
+    return false;
   }
 };
 
-// Логін
 export const loginUser = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    toast.success("Logged in successfully!");
+    toast.success("Welcome!");
     return userCredential.user;
   } catch (error) {
     if (error.code === "auth/user-not-found") {
@@ -38,20 +47,16 @@ export const loginUser = async (email, password) => {
   }
 };
 
-// Вихід
 export const logoutUser = async () => {
   try {
     await signOut(auth);
-    toast.success('Bye-bye')
+    toast.success("Bye-bye");
   } catch (error) {
     toast.error(`Logout error. Please try again`);
     throw error;
   }
 };
 
-
-
-// ✅ Отримання поточного користувача
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

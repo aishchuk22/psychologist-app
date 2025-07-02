@@ -1,33 +1,55 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../../schemas/loginSchema";
 import { loginUser } from "../../../services/authService";
 import styles from "./LoginForm.module.css";
+import { Eye, EyeOff } from "lucide-react";
 
-const LoginForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+const LoginForm = ({ onClose }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
   const onSubmit = async (data) => {
-    try {
-      await loginUser(data.email, data.password);
-      // Тут пізніше додамо toast успіху
-    } catch (error) {
-      console.error(error);
-      // Тут пізніше додамо toast з помилкою
+    const success = await loginUser(data.email, data.password);
+    if (success) {
+      onClose();
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <input type="email" placeholder="Email" {...register("email")} />
-      {errors.email && <p>{errors.email.message}</p>}
+      {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
-      <input type="password" placeholder="Password" {...register("password")} />
-      {errors.password && <p>{errors.password.message}</p>}
+      <div className={styles.passwordWrapper}>
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          {...register("password")}
+        />
+        <button
+          type="button"
+          className={styles.eyeButton}
+          onClick={() => setShowPassword((prev) => !prev)}
+        >
+          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+        </button>
+      </div>
+      {errors.password && (
+        <p className={styles.error}>{errors.password.message}</p>
+      )}
 
-      <button type="submit">Login</button>
+      <button type="submit" className={styles.submitButton}>
+        Login
+      </button>
     </form>
   );
 };

@@ -4,28 +4,39 @@ import { registerSchema } from "../../../schemas/registerSchema";
 import styles from "./RegisterForm.module.css";
 import { registerUser } from "../../../services/authService";
 
-const RegisterForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+const RegisterForm = ({ onClose, openLoginModal }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(registerSchema),
   });
 
   const onSubmit = async (data) => {
-    try {
-      await registerUser(data.email, data.password);
-    } catch {
-      // Помилки обробляються у authService через toast
+    const success = await registerUser(data.name, data.email, data.password);
+    if (success) {
+      onClose(); // закриваємо RegisterModal
+      openLoginModal(); // одразу відкриваємо LoginModal
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <input type="text" placeholder="Name" {...register("name")} />
+      {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+
       <input type="email" placeholder="Email" {...register("email")} />
-      {errors.email && <p>{errors.email.message}</p>}
+      {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
       <input type="password" placeholder="Password" {...register("password")} />
-      {errors.password && <p>{errors.password.message}</p>}
+      {errors.password && (
+        <p className={styles.error}>{errors.password.message}</p>
+      )}
 
-      <button type="submit">Register</button>
+      <button type="submit" className={styles.submitButton}>
+        Register
+      </button>
     </form>
   );
 };
