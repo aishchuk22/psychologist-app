@@ -26,29 +26,45 @@ const LoginForm = ({ onClose }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <input type="email" placeholder="Email" {...register("email")} />
-      {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+      <h2 className={styles.title}>Log In</h2>
+      <p className={styles.description}>
+        Welcome back! Please enter your credentials to access your account and
+        continue your search for a psychologist.
+      </p>
 
-      <div className={styles.passwordWrapper}>
+      <div className={styles.inputGroup}>
         <input
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          {...register("password")}
+          type="email"
+          placeholder="Email"
+          {...register("email")}
+          className={styles.input}
         />
-        <button
-          type="button"
-          className={styles.eyeButton}
-          onClick={() => setShowPassword((prev) => !prev)}
-        >
-          {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-        </button>
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
       </div>
-      {errors.password && (
-        <p className={styles.error}>{errors.password.message}</p>
-      )}
+
+      <div className={styles.inputGroup}>
+        <div className={styles.passwordWrapper}>
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            {...register("password")}
+            className={styles.input}
+          />
+          <button
+            type="button"
+            className={styles.eyeButton}
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
+        {errors.password && (
+          <p className={styles.error}>{errors.password.message}</p>
+        )}
+      </div>
 
       <button type="submit" className={styles.submitButton}>
-        Login
+        Log In
       </button>
     </form>
   );

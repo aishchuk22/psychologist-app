@@ -33,7 +33,6 @@ const LoginModal = ({ isOpen, onClose }) => {
         <button className={styles.closeBtn} onClick={onClose}>
           ❌
         </button>
-        <h2>Login</h2>
         <LoginForm onClose={onClose} />
       </div>
     </div>

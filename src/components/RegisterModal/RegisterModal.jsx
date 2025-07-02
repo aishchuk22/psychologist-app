@@ -33,7 +33,6 @@ const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {
         <button className={styles.closeBtn} onClick={onClose}>
           ❌
         </button>
-        <h2>Register</h2>
         <RegisterForm onClose={onClose} openLoginModal={openLoginModal} />
       </div>
     </div>
