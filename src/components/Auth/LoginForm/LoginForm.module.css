@@ -1,38 +1,51 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   width: 100%;
+  padding: 64px;
 }
 
 .title {
-  text-align: center;
   font-size: 40px;
   font-weight: 500;
-  margin-bottom: 8px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
   color: #191a15;
+  margin-bottom: 20px;
 }
 
 .description {
-  text-align: center;
   font-size: 16px;
+  font-weight: 400;
   color: rgba(25, 26, 21, 0.5);
-  margin: 0px 0px 20px;
-  line-height: 1.25;
+  margin-bottom: 40px;
+  letter-spacing: 0.02rem;
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.inputGroup:last-of-type {
+  margin-bottom: 40px;
 }
 
 .input {
   padding: 16px 18px;
-  border: 1px solid #8a8a89;
+  border: 1px solid rgba(25, 26, 21, 0.1);
   border-radius: 12px;
   font-size: 16px;
-  background-color: transparent;
   color: #191a15;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+.passwordWrapper {
+  position: relative;
+  width: 100%;
 }
 
 .passwordWrapper .input {
@@ -47,12 +60,8 @@
 
 .input:focus {
   outline: none;
-  border-color: #54be96;
-}
-
-.passwordWrapper {
-  position: relative;
-  width: 100%;
+  border-color: #3470ff;
+  background-color: #fbfbfb;
 }
 
 .eyeButton {
@@ -63,32 +72,40 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
-  color: #191a15;
+  padding: 4px;
+  color: #6b7280;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.eyeButton:hover {
+  color: #191a15;
 }
 
 .error {
-  color: #e74c3c;
+  color: #ef4444;
   font-size: 14px;
-  margin: 4px 0px 0px 0px;
+  margin-top: 4px;
 }
 
 .submitButton {
-  padding: 16px;
+  padding: 16px 32px;
   background-color: #3470ff;
-  color: white;
+  color: #fbfbfb;
   border: none;
-  border-radius: 12px;
+  border-radius: 30px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  margin-top: 8px;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .submitButton:hover {
-  background-color: #2c5ce6;
+  background-color: #2563eb;
 }

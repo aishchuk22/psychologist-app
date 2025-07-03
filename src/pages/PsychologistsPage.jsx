@@ -5,7 +5,7 @@ import { fetchPsychologists } from "../services/psychologistsService";
 import { toast } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const PsychologistsPage = () => {
+const PsychologistsPage = ({ openLoginModal }) => {
   const [psychologists, setPsychologists] = useState([]);
   const [filteredPsychologists, setFilteredPsychologists] = useState([]);
   const [_filters, setFilters] = useState({
@@ -22,7 +22,7 @@ const PsychologistsPage = () => {
         const data = await fetchPsychologists();
         setPsychologists(data);
         setFilteredPsychologists(data);
-      // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
       } catch (error) {
         toast.error("Error loading psychologists. Please try again later.");
       } finally {
@@ -50,7 +50,9 @@ const PsychologistsPage = () => {
     let result = [...psychologists];
 
     if (selectedSpecialization !== "Show all") {
-      result = result.filter((p) => p.specialization === selectedSpecialization);
+      result = result.filter(
+        (p) => p.specialization === selectedSpecialization
+      );
     }
 
     switch (sortOption) {
@@ -113,6 +115,7 @@ const PsychologistsPage = () => {
         onLoadMore={handleLoadMore}
         showScrollTop={showScrollTop}
         onScrollToTop={scrollToTop}
+        openLoginModal={openLoginModal}
       />
     </div>
   );

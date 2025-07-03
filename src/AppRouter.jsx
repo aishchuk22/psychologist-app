@@ -13,7 +13,10 @@ const AppRouter = ({ openLoginModal, openRegisterModal }) => {
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/psychologists" element={<PsychologistsPage />} />
+        <Route
+          path="/psychologists"
+          element={<PsychologistsPage openLoginModal={openLoginModal} />}
+        />
         <Route path="/favourites" element={<FavoritesPage />} />
       </Routes>
     </>

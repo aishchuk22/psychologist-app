@@ -8,6 +8,7 @@ const PsychologistsList = ({
   showScrollTop,
   onScrollToTop,
   onHeartClick,
+  openLoginModal,
 }) => {
   if (!Array.isArray(psychologists)) {
     return null;
@@ -21,6 +22,7 @@ const PsychologistsList = ({
             <PsychologistCard
               psychologist={psychologist}
               onHeartClick={onHeartClick}
+              openLoginModal={openLoginModal}
             />
           </li>
         ))}

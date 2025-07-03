@@ -55,7 +55,7 @@ const LoginForm = ({ onClose }) => {
             className={styles.eyeButton}
             onClick={() => setShowPassword((prev) => !prev)}
           >
-            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
           </button>
         </div>
         {errors.password && (

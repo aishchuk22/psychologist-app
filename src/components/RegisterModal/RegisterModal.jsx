@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styles from "./RegisterModal.module.css";
 import RegisterForm from "../Auth/RegisterForm/RegisterForm";
+import { X } from "lucide-react";
 
 const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {
   useEffect(() => {
@@ -31,7 +32,7 @@ const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
         <button className={styles.closeBtn} onClick={onClose}>
-          ❌
+          <X />
         </button>
         <RegisterForm onClose={onClose} openLoginModal={openLoginModal} />
       </div>
