@@ -15,8 +15,8 @@ export const registerUser = async (name, email, password) => {
       displayName: name,
     });
     toast.success("Registration successful! Please login now.");
-    await signOut(auth); // ВАЖЛИВО: вихід одразу після реєстрації
-    return true; // сигнал, що реєстрація вдала
+    await signOut(auth); 
+    return true; 
   } catch (error) {
     if (error.code === "auth/email-already-in-use") {
       toast.error("This email is already in use. Try another one");
@@ -35,14 +35,11 @@ export const loginUser = async (email, password) => {
     toast.success("Welcome!");
     return userCredential.user;
   } catch (error) {
-    if (error.code === "auth/user-not-found") {
-      toast.error("User with such email was not found. Please try again");
-    } else if (error.code === "auth/wrong-password") {
-      toast.error("Invalid password. Please try again");
-    } else if (error.code === "auth/invalid-email") {
-      toast.error("Invalid email format. Please try again");
+    if (error.code === "auth/invalid-credential") {
+      toast.error("User with such credentials was not found. Please try again");
     } else {
-      toast.error(`Login error. Please try again`);
+      console.log(error.code)
+      toast.error(`Something went wrong... Please try again`);
     }
   }
 };

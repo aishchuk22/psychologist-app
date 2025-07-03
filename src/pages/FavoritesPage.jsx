@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import Filters from "../components/Filters/Filters";
 import PsychologistsList from "../components/PsychologistList/PsychologistList";
 import ConfirmModal from "../components/ConfirmModal/ConfirmModal";
@@ -8,6 +10,9 @@ import { toast } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const FavoritesPage = () => {
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const [psychologists, setPsychologists] = useState([]);
   const [filteredPsychologists, setFilteredPsychologists] = useState([]);
@@ -15,7 +20,7 @@ const FavoritesPage = () => {
     sortOption: "Show all",
     selectedSpecialization: "Show all",
   });
-  const [loading, setLoading] = useState(true);
+  const [loadingData, setLoadingData] = useState(true);
   const [visibleCount, setVisibleCount] = useState(3);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -23,6 +28,14 @@ const FavoritesPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    if (!loading && !user) {
+      navigate("/");
+    }
+  }, [user, loading, navigate]);
+
+  useEffect(() => {
+    if (!user) return;
+
     const loadData = async () => {
       try {
         const data = await fetchPsychologists();
@@ -32,12 +45,12 @@ const FavoritesPage = () => {
       } catch {
         toast.error("Error loading favorites. Please try again later.");
       } finally {
-        setLoading(false);
+        setLoadingData(false);
       }
     };
 
     loadData();
-  }, [favorites]);
+  }, [favorites, user]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,10 +129,10 @@ const FavoritesPage = () => {
     ...new Set(psychologists.map((p) => p.specialization)),
   ];
 
-  if (loading) {
+  if (loading || loadingData) {
     return (
       <div style={{ textAlign: "center", marginTop: "100px" }}>
-        <ClipLoader color="#3f82f8" loading={loading} size={50} />
+        <ClipLoader color="#3f82f8" loading={true} size={50} />
       </div>
     );
   }

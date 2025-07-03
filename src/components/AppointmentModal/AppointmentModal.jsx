@@ -135,7 +135,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
               minDate={new Date()}
-              placeholderText="Select appointment date"
+              placeholderText="2000-01-01"
               dateFormat="yyyy-MM-dd"
               className={styles.input}
             />
@@ -148,7 +148,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               timeIntervals={30}
               timeCaption="Time"
               dateFormat="HH:mm"
-              placeholderText="Select appointment time"
+              placeholderText="00:00"
               className={styles.input}
             />
           </div>

@@ -2,7 +2,6 @@ import styles from "./Header.module.css";
 import { logoutUser } from "../../services/authService";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { UserRound } from "lucide-react";
 
 const Header = ({ openLoginModal, openRegisterModal }) => {
   const { user } = useAuth();
@@ -17,61 +16,81 @@ const Header = ({ openLoginModal, openRegisterModal }) => {
 
   return (
     <header className={styles.header}>
-      <nav className={styles.nav}>
-        <h2 className={styles.logo}>Psychologists App</h2>
+      <div className={styles.container}>
+        <div className={styles.leftSection}>
+          <h2 className={styles.logo}>
+            <span>psychologists.</span>services
+          </h2>
 
-        <div className={styles.navLinks}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? styles.activeLink : styles.link
-            }
+          <div
+            className={user ? styles.linksWrapperCentered : styles.linksWrapper}
           >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/psychologists"
-            className={({ isActive }) =>
-              isActive ? styles.activeLink : styles.link
-            }
-          >
-            Psychologists
-          </NavLink>
-
-          {user && (
             <NavLink
-              to="/favourites"
+              to="/"
               className={({ isActive }) =>
                 isActive ? styles.activeLink : styles.link
               }
             >
-              Favourites
+              Home
             </NavLink>
-          )}
 
+            <NavLink
+              to="/psychologists"
+              className={({ isActive }) =>
+                isActive ? styles.activeLink : styles.link
+              }
+            >
+              Psychologists
+            </NavLink>
+
+            <div className={styles.favLinkPlaceholder}>
+              {user && (
+                <NavLink
+                  to="/favourites"
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : styles.link
+                  }
+                >
+                  Favourites
+                </NavLink>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.rightSection}>
           {!user ? (
             <>
               <button onClick={openLoginModal} className={styles.authButton}>
-                Login
+                Log In
               </button>
               <button onClick={openRegisterModal} className={styles.authButton}>
-                Register
+                Registration
               </button>
             </>
           ) : (
             <>
-              <div className={styles.userInfo}>
-                <UserRound size={20} className={styles.userIcon} />
-                <span>{user.displayName || user.email}</span>
+              <div className={styles.userWrapper}>
+                <div className={styles.userInfo}>
+                  <svg
+                    className={styles.userIcon}
+                    width={16}
+                    height={16}
+                    viewBox="0 0 32 32"
+                  >
+                    <path d="M16 5.333c1.415 0 2.771 0.562 3.771 1.562s1.562 2.357 1.562 3.771-0.562 2.771-1.562 3.771c-1 1-2.357 1.562-3.771 1.562s-2.771-0.562-3.771-1.562c-1-1-1.562-2.357-1.562-3.771s0.562-2.771 1.562-3.771c1-1 2.357-1.562 3.771-1.562zM16 18.667c5.893 0 10.667 2.387 10.667 5.333v2.667h-21.333v-2.667c0-2.947 4.773-5.333 10.667-5.333z"></path>
+                  </svg>
+                  <span>{user.displayName || user.email}</span>
+                </div>
+
+                <button onClick={handleLogout} className={styles.logoutButton}>
+                  Logout
+                </button>
               </div>
-              <button onClick={handleLogout} className={styles.logoutButton}>
-                Logout
-              </button>
             </>
           )}
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
