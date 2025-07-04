@@ -85,7 +85,7 @@ const PsychologistCard = ({ psychologist, onHeartClick, openLoginModal }) => {
               onClick={handleHeartClick}
             >
               {favorite ? (
-                <Heart fill="red" color="none" size={20} />
+                <Heart fill="#3470ff" color="none" size={20} />
               ) : (
                 <Heart size={20} color="blue" fill="none" />
               )}
