@@ -1,18 +1,9 @@
 import styles from "./Header.module.css";
-import { logoutUser } from "../../services/authService";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
-const Header = ({ openLoginModal, openRegisterModal }) => {
+const Header = ({ openLoginModal, openRegisterModal, openLogoutModal }) => {
   const { user } = useAuth();
-
-  const handleLogout = async () => {
-    try {
-      await logoutUser();
-    } catch {
-      // Помилка вже оброблена в authService
-    }
-  };
 
   return (
     <header className={styles.header}>
@@ -83,7 +74,10 @@ const Header = ({ openLoginModal, openRegisterModal }) => {
                   <span>{user.displayName || user.email}</span>
                 </div>
 
-                <button onClick={handleLogout} className={styles.logoutButton}>
+                <button
+                  onClick={openLogoutModal}
+                  className={styles.logoutButton}
+                >
                   Logout
                 </button>
               </div>

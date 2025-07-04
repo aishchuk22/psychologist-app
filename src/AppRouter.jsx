@@ -4,13 +4,15 @@ import PsychologistsPage from "./pages/PsychologistsPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import HomePage from "./pages/HomePage";
 
-const AppRouter = ({ openLoginModal, openRegisterModal }) => {
+const AppRouter = ({ openLoginModal, openRegisterModal, openLogoutModal }) => {
   return (
     <>
       <Header
         openLoginModal={openLoginModal}
         openRegisterModal={openRegisterModal}
+        openLogoutModal={openLogoutModal}
       />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
