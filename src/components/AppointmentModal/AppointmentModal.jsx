@@ -15,6 +15,7 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm({
     resolver: yupResolver(appointmentSchema),
   });
@@ -31,12 +32,13 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
 
     if (isOpen) {
       document.addEventListener("keydown", handleEsc);
+      clearErrors();
     }
 
     return () => {
       document.removeEventListener("keydown", handleEsc);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, clearErrors]);
 
   const handleBackdropClick = (event) => {
     if (event.target === event.currentTarget) {
@@ -71,7 +73,9 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
 
     try {
       await saveAppointment(appointmentData);
-      toast.success("Appointment successfully saved!");
+      toast.success(
+        "Appointment successfully scheduled! Please, wait for a confirmation call"
+      );
       reset();
       setSelectedDate(null);
       setSelectedTime(null);
@@ -109,7 +113,10 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               alt={psychologist.name}
               className={styles.avatar}
             />
-            <span className={styles.name}>{psychologist.name}</span>
+            <div>
+              <p className={styles.subtitle}>Your psychologist</p>
+              <span className={styles.name}>{psychologist.name}</span>
+            </div>
           </div>
         )}
 
@@ -138,6 +145,15 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               placeholderText="2000-01-01"
               dateFormat="yyyy-MM-dd"
               className={styles.input}
+              popperPlacement="bottom-start"
+              popperModifiers={{
+                preventOverflow: {
+                  enabled: true,
+                  escapeWithReference: false,
+                  boundariesElement: "viewport",
+                },
+              }}
+              enableTabLoop={false}
             />
 
             <DatePicker
@@ -150,6 +166,15 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
               dateFormat="HH:mm"
               placeholderText="00:00"
               className={styles.input}
+              popperPlacement="bottom-start"
+              popperModifiers={{
+                preventOverflow: {
+                  enabled: true,
+                  escapeWithReference: false,
+                  boundariesElement: "viewport",
+                },
+              }}
+              enableTabLoop={false}
             />
           </div>
 

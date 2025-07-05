@@ -4,41 +4,49 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(25, 26, 21, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  backdrop-filter: blur(2px);
 }
 
 .modal {
   background-color: #fbfbfb;
   padding: 32px;
   border-radius: 16px;
-  max-width: 400px;
+  width: 400px;
+  max-width: 90vw;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-h2 {
+.modal h2 {
+  font-size: 18px;
   font-weight: 500;
-  line-height: 125%;
+  color: #191a15;
+  margin: 0 0 24px;
+  line-height: 1.4;
 }
 
 .buttonGroup {
   display: flex;
-  justify-content: space-between;
-  margin-top: 24px;
   gap: 12px;
+  justify-content: center;
 }
 
 .confirmBtn {
   background-color: #3470ff;
   color: #fbfbfb;
   padding: 12px 24px;
-  border-radius: 30px;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 16px;
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  min-width: 120px;
+  transition: all 0.2s ease;
 }
 
 .confirmBtn:hover {
@@ -46,13 +54,15 @@ h2 {
 }
 
 .cancelBtn {
-  background: none;
-  border: 2px solid #191a15;
+  background-color: transparent;
   color: #191a15;
   padding: 12px 24px;
-  border-radius: 30px;
+  border: 1px solid #191a15;
+  border-radius: 24px;
+  font-size: 16px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  min-width: 120px;
+  transition: all 0.2s ease;
 }
 
 .cancelBtn:hover {

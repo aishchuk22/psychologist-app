@@ -104,7 +104,7 @@ const PsychologistsPage = ({ openLoginModal }) => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "64px 0 100px" }}>
       <Filters
         specializations={allSpecializations}
         onFilterChange={handleFilterChange}
