@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import Filters from "../components/Filters/Filters";
+
 import PsychologistsList from "../components/PsychologistList/PsychologistList";
 import { fetchPsychologists } from "../services/psychologistsService";
-import { toast } from "react-hot-toast";
+import Filters from "../components/Filters/Filters";
+import { applyFilters, getUniqueSpecializations } from "../utils/filterSwitch";
+
 import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from "react-hot-toast";
 
 const PsychologistsPage = ({ openLoginModal }) => {
   const [psychologists, setPsychologists] = useState([]);
@@ -47,36 +50,10 @@ const PsychologistsPage = ({ openLoginModal }) => {
   }, []);
 
   const handleFilterChange = ({ sortOption, selectedSpecialization }) => {
-    let result = [...psychologists];
-
-    if (selectedSpecialization !== "Show all") {
-      result = result.filter(
-        (p) => p.specialization === selectedSpecialization
-      );
-    }
-
-    switch (sortOption) {
-      case "A to Z":
-        result.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "Z to A":
-        result.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "Cheapest to more expensive":
-        result.sort((a, b) => a.price_per_hour - b.price_per_hour);
-        break;
-      case "More expensive to cheapest":
-        result.sort((a, b) => b.price_per_hour - a.price_per_hour);
-        break;
-      case "Popular (rating 4.8 and more)":
-        result = result.filter((p) => p.rating >= 4.8);
-        break;
-      case "Not popular (less than 4.8 rating)":
-        result = result.filter((p) => p.rating < 4.8);
-        break;
-      default:
-        break;
-    }
+    const result = applyFilters(psychologists, {
+      sortOption,
+      selectedSpecialization,
+    });
 
     setFilters({ sortOption, selectedSpecialization });
     setFilteredPsychologists(result);
@@ -91,14 +68,12 @@ const PsychologistsPage = ({ openLoginModal }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const allSpecializations = [
-    ...new Set(psychologists.map((p) => p.specialization)),
-  ];
+  const allSpecializations = getUniqueSpecializations(psychologists);
 
   if (loading) {
     return (
       <div style={{ textAlign: "center", marginTop: "100px" }}>
-        <ClipLoader color="#3f82f8" loading={loading} size={50} />
+        <ClipLoader color="#3470ff" loading={loading} size={50} />
       </div>
     );
   }

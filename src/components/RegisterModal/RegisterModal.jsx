@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import styles from "./RegisterModal.module.css";
+
 import RegisterForm from "../Auth/RegisterForm/RegisterForm";
+
+import styles from "./RegisterModal.module.css";
 import { X } from "lucide-react";
 
 const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {

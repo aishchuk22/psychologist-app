@@ -7,8 +7,8 @@ export const uploadPsychologists = async () => {
     try {
       const psychologistsRef = ref(db, "psychologists");
       await set(psychologistsRef, psychologists);
-      toast.success("Психологи успішно завантажені в Firebase!");
+      toast.success("Psychologists are successfully loaded to Firebase!");
     } catch (error) {
-      toast.error(`Помилка завантаження: ${error.message}`);
+      toast.error(`An error occured: ${error.message}`);
     }
   };

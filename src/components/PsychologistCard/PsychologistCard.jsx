@@ -1,9 +1,11 @@
+import { useFavorites } from "../../hooks/useFavorites";
+import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
+
+import AppointmentModal from "../AppointmentModal/AppointmentModal";
+
 import styles from "./PsychologistCard.module.css";
 import { Star, Heart } from "lucide-react";
-import { useFavorites } from "../../hooks/useFavorites";
-import AppointmentModal from "../AppointmentModal/AppointmentModal";
-import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
 
 const PsychologistCard = ({ psychologist, onHeartClick, openLoginModal }) => {

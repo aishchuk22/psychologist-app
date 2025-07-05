@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import styles from "./LoginModal.module.css";
+
 import LoginForm from "../Auth/LoginForm/LoginForm";
+
+import styles from "./LoginModal.module.css";
 import { X } from "lucide-react";
 
 const LoginModal = ({ isOpen, onClose }) => {

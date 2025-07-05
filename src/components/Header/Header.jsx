@@ -1,6 +1,7 @@
-import styles from "./Header.module.css";
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { NavLink } from "react-router-dom";
+
+import styles from "./Header.module.css";
 
 const Header = ({ openLoginModal, openRegisterModal, openLogoutModal }) => {
   const { user } = useAuth();

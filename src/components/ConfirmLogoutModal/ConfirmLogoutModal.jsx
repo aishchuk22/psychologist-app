@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import styles from "./ConfirmLogoutModal.module.css";
 
 const ConfirmLogoutModal = ({ isOpen, onClose, onConfirm }) => {

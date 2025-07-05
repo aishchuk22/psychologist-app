@@ -14,8 +14,6 @@
   max-width: 1440px;
   width: 100%;
   gap: 125px;
-  /* margin-top: 78px;
-  margin-bottom: 100px; */
 }
 
 .content {
@@ -62,9 +60,7 @@
   line-height: 120%;
   background-color: #3470ff;
   color: #fbfbfb;
-  border: none;
   border-radius: 30px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
@@ -162,7 +158,7 @@
 }
 
 .checkIcon {
-  color: white;
+  color: #fbfbfb;
   flex-shrink: 0;
 }
 

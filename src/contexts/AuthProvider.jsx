@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+
 import { auth } from "../services/firebase";
-import { toast } from "react-hot-toast";
 import { AuthContext } from "./AuthContext";
+
+import { toast } from "react-hot-toast";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -15,8 +17,8 @@ export const AuthProvider = ({ children }) => {
         setUser(currentUser);
         setLoading(false);
       },
+      // eslint-disable-next-line no-unused-vars
       (error) => {
-        console.error("Auth state listener error:", error);
         toast.error("Authentication check failed");
         setLoading(false);
       }

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+
 import { FavoritesContext } from "./FavoritesContext";
 import { useAuth } from "../hooks/useAuth";
 import {
   getFavoritesFromDB,
   setFavoritesToDB,
 } from "../services/favoritesService";
+
 import toast from "react-hot-toast";
 
 export const FavoritesProvider = ({ children }) => {
@@ -19,8 +21,9 @@ export const FavoritesProvider = ({ children }) => {
           const dbFavorites = await getFavoritesFromDB(user.uid);
           setFavorites(dbFavorites || []);
           setIsFetched(true);
+          // eslint-disable-next-line no-unused-vars
         } catch (error) {
-          toast.error("Failed to load favorites:", error);
+          toast.error("Failed to load favorites. Please try again");
           setIsFetched(true);
         }
       } else {

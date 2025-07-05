@@ -70,10 +70,8 @@
   right: 18px;
   transform: translateY(-50%);
   background: none;
-  border: none;
-  cursor: pointer;
   padding: 4px;
-  color: #6b7280;
+  color: rgba(25, 26, 21, 0.5);
   z-index: 10;
   display: flex;
   align-items: center;
@@ -96,11 +94,9 @@
   padding: 16px 32px;
   background-color: #3470ff;
   color: #fbfbfb;
-  border: none;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 500;
-  cursor: pointer;
   transition: all 0.2s ease;
   min-width: 120px;
   max-width: 100%;

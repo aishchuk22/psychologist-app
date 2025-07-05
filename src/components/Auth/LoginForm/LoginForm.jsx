@@ -1,10 +1,13 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+
 import { loginSchema } from "../../../schemas/loginSchema";
 import { loginUser } from "../../../services/authService";
-import styles from "./LoginForm.module.css";
+
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Eye, EyeOff } from "lucide-react";
+
+import styles from "./LoginForm.module.css";
 
 const LoginForm = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);

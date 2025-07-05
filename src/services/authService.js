@@ -38,7 +38,6 @@ export const loginUser = async (email, password) => {
     if (error.code === "auth/invalid-credential") {
       toast.error("User with such credentials was not found. Please try again");
     } else {
-      console.log(error.code)
       toast.error(`Something went wrong... Please try again`);
     }
   }
@@ -47,7 +46,7 @@ export const loginUser = async (email, password) => {
 export const logoutUser = async () => {
   try {
     await signOut(auth);
-    toast.success("Bye-bye");
+    toast.success("🙌 Goodbye! Have a beautiful day!");
   } catch (error) {
     toast.error(`Logout error. Please try again`);
     throw error;

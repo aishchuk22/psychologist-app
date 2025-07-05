@@ -25,7 +25,7 @@
 }
 
 .loadMoreBtn:hover {
-  background-color: #2557cc;
+  background-color: #255ee8;
 }
 
 .loader {
@@ -35,7 +35,7 @@
 }
 
 .error {
-  color: #e74c3c;
+  color: tomato;
   text-align: center;
   margin-top: 40px;
   font-weight: 500;
@@ -62,7 +62,7 @@
 }
 
 .scrollTopBtn:hover {
-  background-color: #2557cc;
+  background-color: #255ee8;
 }
 
 @media (max-width: 768px) {

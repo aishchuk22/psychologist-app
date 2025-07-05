@@ -1,4 +1,5 @@
 import PsychologistCard from "../PsychologistCard/PsychologistCard";
+
 import styles from "./PsychologistList.module.css";
 
 const PsychologistsList = ({

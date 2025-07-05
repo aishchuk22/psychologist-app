@@ -153,7 +153,7 @@
 }
 
 .submitButton:hover {
-  background-color: #336bd6;
+  background-color: #255ee8;
 }
 
 .dateTimeRow {
@@ -168,18 +168,7 @@
   min-width: 0;
 }
 
-.react-datepicker-wrapper {
-  width: 100% !important;
-  display: block !important;
-}
-
-.react-datepicker__input-container {
-  width: 100% !important;
-  display: block !important;
-}
-
 .react-datepicker__input-container input {
-  width: 100% !important;
   box-sizing: border-box;
   padding: 15px 18px;
   border-radius: 12px;
@@ -195,108 +184,4 @@
   outline: none;
   border-color: #3470ff;
   background-color: #fbfbfb;
-}
-
-.react-datepicker__input-container input::placeholder {
-  color: #191a15;
-}
-
-.react-datepicker__tab-loop {
-  display: none !important;
-}
-
-.react-datepicker__aria-live {
-  display: none !important;
-}
-
-.react-datepicker-popper {
-  z-index: 10000 !important;
-}
-
-.react-datepicker-popper[data-placement^="bottom"] {
-  margin-top: 8px;
-}
-
-.react-datepicker-popper[data-placement^="top"] {
-  margin-bottom: 8px;
-}
-
-.react-datepicker {
-  font-family: inherit;
-  border: 1px solid #d0d5dd;
-  border-radius: 12px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.react-datepicker__header {
-  background-color: #f8fafc;
-  border-bottom: 1px solid #d0d5dd;
-  border-radius: 12px 12px 0 0;
-  padding: 16px;
-}
-
-.react-datepicker__current-month {
-  font-weight: 500;
-  color: #191a15;
-  font-size: 16px;
-}
-
-.react-datepicker__day {
-  border-radius: 8px;
-  color: #191a15;
-  font-size: 14px;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  margin: 2px;
-}
-
-.react-datepicker__day:hover {
-  background-color: #f1f5f9;
-}
-
-.react-datepicker__day--selected {
-  background-color: #3470ff;
-  color: white;
-}
-
-.react-datepicker__day--selected:hover {
-  background-color: #336bd6;
-}
-
-.react-datepicker__day--today {
-  background-color: #e2e8f0;
-  color: #191a15;
-}
-
-.react-datepicker__day--disabled {
-  color: #cbd5e1;
-  cursor: default;
-}
-
-.react-datepicker__day--disabled:hover {
-  background-color: transparent;
-}
-
-.react-datepicker__time-container {
-  border-left: 1px solid #d0d5dd;
-}
-
-.react-datepicker__time-list-item {
-  padding: 8px 12px;
-  font-size: 14px;
-  color: #191a15;
-}
-
-.react-datepicker__time-list-item:hover {
-  background-color: #f1f5f9;
-}
-
-.react-datepicker__time-list-item--selected {
-  background-color: #3470ff;
-  color: white;
-}
-
-.react-datepicker__time-list-item--selected:hover {
-  background-color: #336bd6;
 }

@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { X } from "lucide-react";
-import styles from "./AppointmentModal.module.css";
-import { appointmentSchema } from "../../schemas/apptSchema";
-import { toast } from "react-hot-toast";
+
 import { saveAppointment } from "../../services/appointmentService";
+import { appointmentSchema } from "../../schemas/apptSchema";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import { toast } from "react-hot-toast";
+import { X } from "lucide-react";
+
+import styles from "./AppointmentModal.module.css";
 
 const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
   const {
@@ -40,8 +43,8 @@ const AppointmentModal = ({ isOpen, onClose, psychologist }) => {
     };
   }, [isOpen, onClose, clearErrors]);
 
-  const handleBackdropClick = (event) => {
-    if (event.target === event.currentTarget) {
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
       onClose();
     }
   };

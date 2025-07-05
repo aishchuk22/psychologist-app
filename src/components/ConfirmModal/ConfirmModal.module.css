@@ -26,7 +26,7 @@
   font-weight: 500;
   color: #191a15;
   margin: 0 0 24px 0;
-  line-height: 1.4;
+  line-height: 125%;
 }
 
 .buttons {
@@ -39,9 +39,7 @@
   background-color: #3470ff;
   color: #fbfbfb;
   padding: 12px 24px;
-  border: none;
   border-radius: 24px;
-  cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   min-width: 120px;

@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
+
 import PsychologistsPage from "./pages/PsychologistsPage";
 import FavoritesPage from "./pages/FavoritesPage";
+import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage";
 
 const AppRouter = ({ openLoginModal, openRegisterModal, openLogoutModal }) => {

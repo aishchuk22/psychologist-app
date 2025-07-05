@@ -72,17 +72,11 @@
 
 .favoriteButton {
   background: transparent;
-  border: none;
   padding: 4px;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s;
-}
-
-.favoriteButton:hover {
-  transform: scale(1.1);
 }
 
 .rating {
@@ -146,15 +140,13 @@
   color: #191a15;
   font-size: 16px;
   font-weight: 500;
-  padding: 0;
   margin-top: 14px;
   align-self: flex-start;
   text-decoration: underline;
-  text-decoration-skip-ink: none;
 }
 
 .readMoreBtn:hover {
-  color: #2557cc;
+  color: #255ee8;
 }
 
 .expandedContent {
@@ -252,7 +244,7 @@
 }
 
 .showLessBtn:hover {
-  color: #2557cc;
+  color: #255ee8;
 }
 
 @media (max-width: 768px) {
