@@ -1,94 +1,296 @@
 .card {
-  border: 1px solid #ccc;
-  padding: 16px;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  background-color: #fbfbfb;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  margin: 0 128px 32px 128px;
+  position: relative;
+}
+
+.avatarContainer {
+  position: relative;
+  flex-shrink: 0;
+  margin-right: 24px;
 }
 
 .avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.tag {
-  background-color: #f0f0f0;
-  padding: 4px 8px;
-  border-radius: 8px;
-  font-size: 12px;
-}
-
-.readMoreBtn {
-  margin-top: 12px;
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.expandedContent {
-  margin-top: 10px;
-  background-color: #f9f9f9;
+  width: 96px;
+  height: 96px;
+  border-radius: 15px;
+  object-fit: cover;
+  border: 2px solid rgba(52, 112, 255, 0.2);
   padding: 10px;
-  border-radius: 6px;
 }
 
-.review {
-  margin-bottom: 8px;
-  padding: 6px;
-  border-bottom: 1px solid #ddd;
+.onlineIndicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  background-color: #38d9a9;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
 }
 
-.appointmentBtn,
-.showLessBtn {
-  margin-top: 10px;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.appointmentBtn {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-}
-
-.showLessBtn {
-  background-color: transparent;
-  color: #007bff;
-  border: none;
-  text-decoration: underline;
-}
-
-.nameRow {
+.mainContent {
+  flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.topRow {
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.psychologistLabel {
+  color: #8a8a89;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+.nameRow h3 {
+  color: #191a15;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 100%;
+  margin-bottom: 16px;
 }
 
 .favoriteButton {
   background: transparent;
   border: none;
-  padding: 0;
-  margin-left: 8px;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
 }
 
 .favoriteButton:hover {
-  background: none;
-  transform: scale(1.05);
+  transform: scale(1.1);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+.price {
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+.price > span {
+  color: #38cd3e;
+}
+
+.separator {
+  width: 1px;
+  height: 16px;
+  background-color: #8a8a8950;
+  margin: 0 4px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px 0;
+}
+
+.tag {
+  background: #f3f3f3;
+  color: #8a8a89;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 24px;
+  line-height: 150%;
+}
+
+.extraTag {
+  color: #191a15;
+}
+
+.about {
+  color: rgba(25, 26, 21, 0.5);
+  font-size: 16px;
+  font-weight: 400;
+  margin: 16px 0 0 0;
+}
+
+.readMoreBtn {
+  background: transparent;
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0;
+  margin-top: 14px;
+  align-self: flex-start;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.readMoreBtn:hover {
+  color: #2557cc;
+}
+
+.expandedContent {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.review:last-of-type {
+  margin-bottom: 40px;
+}
+
+.reviewerBox {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.reviewAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(52, 112, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3470ff;
+  font-size: 20px;
+  font-weight: 500;
+  flex-shrink: 0;
+  line-height: 100%;
+}
+
+.reviewContent {
+  flex: 1;
+}
+
+.reviewHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviewHeader strong {
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.reviewRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #191a15;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 129%;
+}
+
+.reviewComment {
+  color: rgba(25, 26, 21, 0.5);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.appointmentBtn {
+  background: #3470ff;
+  color: #fbfbfb;
+  border-radius: 30px;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  transition: background-color 0.2s;
+  letter-spacing: -0.01em;
+}
+
+.appointmentBtn:hover {
+  background: #2557cc;
+}
+
+.showLessBtn {
+  background: transparent;
+  color: #191a15;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 24px;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.showLessBtn:hover {
+  color: #2557cc;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    padding: 16px;
+    margin: 0 16px 24px 16px;
+  }
+
+  .avatarContainer {
+    margin-right: 0;
+    margin-bottom: 16px;
+    align-self: center;
+  }
+
+  .topRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .rightSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .nameRow h3 {
+    font-size: 20px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .separator {
+    display: none;
+  }
 }

@@ -1,12 +1,51 @@
-# React + Vite
+# psychologists.services - платформа для пошуку психолога
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Запуск
 
-Currently, two official plugins are available:
+Відкрити застосунок → (https://aishchuk22.github.io/psychologist-app/#/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Опис
 
-## Expanding the ESLint configuration
+**psychologists.services** — це веб-застосунок, створений для компанії, що надає послуги психологів. Користувачі можуть переглядати список фахівців, фільтрувати їх за різними критеріями, додавати в обране, бронювати консультації та взаємодіяти з платформою після авторизації.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Функціонал
+
+- Авторизація/реєстрація через Firebase (з валідацією через `react-hook-form` + `Yup`)
+- Список психологів із Firebase Realtime Database
+- Сортування за:
+  - Ім'ям (A-Z, Z-A)
+  - Ціною
+  - Рейтингом
+  - Спеціальністю
+- Додавання/видалення психологів до/з обраного
+- Сторінка "Favorites" (приватна)
+- Модальне вікно для запису на консультацію (з валідацією)
+- Повідомлення через `react-hot-toast`
+- Навігація за допомогою `React Router`
+
+## Технології
+
+Технологія -> Опис
+
+**React** -> Створення SPA та компонентної архітектури
+**Vite** -> Швидкий білд та локальний сервер  
+**Firebase Auth** -> Авторизація, реєстрація, логаут  
+**Firebase DB** -> Realtime Database (психологи, обране)  
+**React Router** -> Навігація між сторінками  
+**React Hook Form + Yup** -> Форма та валідація  
+**React Hot Toast** -> Повідомлення  
+**CSS Modules** -> Локалізовані стилі
+
+## Авторизація
+
+- Авторизований користувач:
+  - Може додавати психологів в обране
+  - Може бронювати консультацію
+  - Має доступ до сторінки "Favorites"
+- Неавторизований користувач:
+  - Отримає сповіщення при спробі взаємодії з приватним функціоналом
+
+## 🧑‍💻 Розробник
+
+> Ім'я: **Андрій Іщук**  
+> Email: 'a_ishchuk22@ukr.net'
