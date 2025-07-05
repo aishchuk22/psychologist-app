@@ -1,12 +1,60 @@
 .filtersContainer {
+  margin-left: 128px;
+  margin-bottom: 32px;
+}
+
+.filtersTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8a89;
+  margin-bottom: 8px;
+  line-height: 129%;
+}
+
+.selectsWrapper {
   display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .select {
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 14px 40px 14px 18px;
+  border-radius: 14px;
+  background-color: #3470ff;
+  color: #fbfbfb;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 120px;
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.select:hover {
+  background-color: #3470ff;
+}
+
+.select option {
   background-color: #fff;
+  color: rgba(25, 26, 21, 0.3);
+  padding: 8px 16px;
+}
+
+.select option:hover {
+  background-color: #fbfbfb;
+  color: #191a15;
+}
+
+.select option:checked {
+  background-color: #3470ff;
+  color: #191a15;
+}
+
+.select:focus {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='18,15 12,9 6,15'%3e%3c/polyline%3e%3c/svg%3e");
 }

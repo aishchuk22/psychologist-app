@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 export const FavoritesProvider = ({ children }) => {
   const { user } = useAuth();
   const [favorites, setFavorites] = useState([]);
+  const [isFetched, setIsFetched] = useState(false);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -17,11 +18,14 @@ export const FavoritesProvider = ({ children }) => {
         try {
           const dbFavorites = await getFavoritesFromDB(user.uid);
           setFavorites(dbFavorites || []);
+          setIsFetched(true);
         } catch (error) {
           toast.error("Failed to load favorites:", error);
+          setIsFetched(true);
         }
       } else {
         setFavorites([]);
+        setIsFetched(false);
       }
     };
 
@@ -29,10 +33,10 @@ export const FavoritesProvider = ({ children }) => {
   }, [user]);
 
   useEffect(() => {
-    if (user) {
+    if (user && isFetched) {
       setFavoritesToDB(user.uid, favorites);
     }
-  }, [favorites, user]);
+  }, [favorites, user, isFetched]);
 
   const toggleFavorite = (id) => {
     setFavorites((prev) =>
