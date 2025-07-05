@@ -43,7 +43,7 @@ const Header = ({ openLoginModal, openRegisterModal, openLogoutModal }) => {
                     isActive ? styles.activeLink : styles.link
                   }
                 >
-                  Favourites
+                  Favorites
                 </NavLink>
               )}
             </div>

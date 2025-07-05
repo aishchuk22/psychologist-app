@@ -115,7 +115,35 @@ const FavoritesPage = () => {
   return (
     <div style={{ padding: "20px" }}>
       {psychologists.length === 0 ? (
-        <h2>You have no favorites yet</h2>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "60px",
+          }}
+        >
+          <h2
+            style={{
+              color: "#191a15",
+              fontSize: "24px",
+              fontWeight: "600",
+              marginBottom: "16px",
+              margin: "0 0 16px 0",
+            }}
+          >
+            You have no favorite psychologists yet
+          </h2>
+          <p
+            style={{
+              color: "#8a8a89",
+              fontSize: "16px",
+              lineHeight: "1.5",
+              margin: "0",
+            }}
+          >
+            Please visit the "Psychologists" Page and select the ones you find
+            suitable for your needs 🤗
+          </p>
+        </div>
       ) : (
         <>
           <Filters

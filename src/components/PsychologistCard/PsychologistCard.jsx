@@ -36,7 +36,7 @@ const PsychologistCard = ({ psychologist, onHeartClick, openLoginModal }) => {
 
   const handleHeartClick = () => {
     if (!user) {
-      toast("Please log in to add to favourites", {
+      toast("Please log in to add to favorites", {
         icon: "👏",
         style: {
           borderRadius: "10px",
